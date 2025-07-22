@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <list>
+
 using namespace std;
 
 //Pairs
@@ -170,20 +171,71 @@ void explainQueue() {
 }
 
 void explain_pq() {
-    priority_queue<int> q;
-    q.push(1);
-    q.push(2);
-    q.push(3);
-    cout<<q.top();
-    q.pop();
-    cout<<q.top();
-    q.pop();
-    cout<<q.top();
+    //Maximum heap
+    priority_queue<int> q; //The lasgest integer/character will be at the top
+    q.push(1); //{1}
+    q.push(2); //{2,1}
+    q.push(3); //{3,2,1}
+    q.emplace(5); //{5,3,2,1}
+
+    cout<<q.top(); //5
+
+    q.pop(); //{3,2,1}
+
+    cout<<q.top(); //3
+    
+    //Size,swap,empty same as stack
+
+    //Minimum heap
+    priority_queue<int, vector<int>, greater<int>> minHeap; //The smallest integer/character will be at the top
+    minHeap.push(1); //{1}
+    minHeap.push(2); //{1,2}        
+    minHeap.push(3); //{1,2,3}
+    minHeap.emplace(5); //{1,2,3,5}
+
+    cout<<minHeap.top(); //1
 
 
 
 }
 
+void explainSet(){
+    set<int> s; //Set is a collection of unique elements in sorted order
+    s.insert(1); //{1}
+    s.insert(2); //{1,2}
+    s.insert(2); //{1,2} - Duplicate, so not added
+    s.insert(3); //{1,2,3}
+    s.insert(4); //{1,2,3,4}
+    s.insert(5); //{1,2,3,4,5}
+
+    //Functionality of insert in vector can be used also , that only increases efficiency 
+    //begin, end, rbegin, rend, clear, insert, size, swap same as vector
+
+    cout<<s.size(); //5
+
+    cout<<s.count(3); //1
+
+    auto it = s.find(3); //it will return an iterator to the element 3 if it exists, otherwise it will return s.end()
+    
+    s.erase(3); //Removes the element 3 from the set, if it exists
+
+    it = s.find(3); //Now it will return s.end() since 3 has been removed
+
+    for(auto it : s) {
+        cout<<it<<" "; //This will print all elements in the set
+    }
+
+    auto it1  = s.find(2); //Finds the element 2
+    auto it2 = s.find(4); //Finds the element 4
+    st.erase(it1, it2); //This will remove all elements from 2 to 4 (exclusive), so only 1 and 5 will remain in the set
+
+    //lower bound and upper bound acts in the same way as in vector
+    auto it_lower = s.lower_bound(2); //Returns an iterator to the first element
+    //that is not less than 2, which is 2 itself in this case
+    auto it_upper = s.upper_bound(2); //Returns an iterator to the first element
+    //that is greater than 2, which is 3 in this case
+    
+}
 int main() {
     explainPairs();
     return 0;
