@@ -3,8 +3,6 @@
 //
 #include <iostream>
 #include <list>
-#include<bits/stdc++.h>
-#include <__ostream/basic_ostream.h>
 using namespace std;
 
 //Pairs
